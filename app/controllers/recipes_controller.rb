@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1 or /recipes/1.json
   def show
     @recipe = set_recipe
-    @recipe_foods = @recipe.recipe_foods
+    # @recipe_foods = @recipe.recipe_foods
   end
 
   # GET /recipes/new
@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
   def create
     add_recipe = current_user.recipes.new(recipe_params)
     if add_recipe.save
-      redirect_to recipe_url(@recipe),
+      redirect_to recipes_path,
                   notice: 'Recipe was added successfully.'
 
     else
