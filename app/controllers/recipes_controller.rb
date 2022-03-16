@@ -3,57 +3,52 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = current_user.recipes
   end
 
   # GET /recipes/1 or /recipes/1.json
-  def show; end
+  def show
+    @recipe = set_recipe
+    # @recipe_foods = @recipe.recipe_foods
+  end
 
   # GET /recipes/new
   def new
     @recipe = Recipe.new
   end
 
-  # GET /recipes/1/edit
-  def edit; end
+  # # GET /recipes/1/edit
+  # def edit; end
 
   # POST /recipes or /recipes.json
   def create
-    @recipe = Recipe.new(recipe_params)
+    add_recipe = current_user.recipes.new(recipe_params)
+    if add_recipe.save
+      redirect_to recipes_path,
+                  notice: 'Recipe was added successfully.'
 
-    respond_to do |format|
-      if @recipe.save
-        format.html do
-          redirect_to recipe_url(@recipe),
-                      notice: 'Recipe was successfully created.'
-        end
-        format.json { render :show, status: :created, location: @recipe }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json do
-          render json: @recipe.errors, status: :unprocessable_entity
-        end
-      end
+    else
+      render :new, alert: 'Failed to add recipe'
     end
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
-  def update
-    respond_to do |format|
-      if @recipe.update(recipe_params)
-        format.html do
-          redirect_to recipe_url(@recipe),
-                      notice: 'Recipe was successfully updated.'
-        end
-        format.json { render :show, status: :ok, location: @recipe }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json do
-          render json: @recipe.errors, status: :unprocessable_entity
-        end
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @recipe.update(recipe_params)
+  #       format.html do
+  #         redirect_to recipe_url(@recipe),
+  #                     notice: 'Recipe was successfully updated.'
+  #       end
+  #       format.json { render :show, status: :ok, location: @recipe }
+  #     else
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json do
+  #         render json: @recipe.errors, status: :unprocessable_entity
+  #       end
+  #     end
+  #   end
+  # end
 
   # DELETE /recipes/1 or /recipes/1.json
   def destroy
@@ -63,7 +58,6 @@ class RecipesController < ApplicationController
       format.html do
         redirect_to recipes_url, notice: 'Recipe was successfully destroyed.'
       end
-      format.json { head :no_content }
     end
   end
 
