@@ -1,53 +1,16 @@
-<!-- <div id="<%= dom_id recipe %>">
-  <p>
-    <strong>Name:</strong>
-    <%= recipe.name %>
-  </p>
-
-  <p>
-    <strong>Preperation time:</strong>
-    <%= recipe.preperation_time %>
-  </p>
-
-  <p>
-    <strong>Cooking time:</strong>
-    <%= recipe.cooking_time %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= recipe.description %>
-  </p>
-
-  <p>
-    <strong>Public:</strong>
-    <%= recipe.public %>
-  </p>
-
-</div> -->
-
-<div class="flex flex-row p-6 rounded-lg shadow-sm bg-white">
-  <div>
-    <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">
-      <%= recipe.name %>
-    </h5>
-
-    <p class="text-gray-700 text-base mb-4"><%= recipe.description %></p>
-    <div class="flex gap-4">
-      <%= link_to "View", recipe, class:'inline-block px-6 py-2.5 bg-blue-600
-      text-white font-medium text-xs leading-tight uppercase rounded shadow-md
-      hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg
-      focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg
-      transition duration-150 ease-in-out' %>
-
-      <div>
-        <%= button_to "Delete Recipe", recipe, method: :delete,
-        class:'inline-block px-6 py-2.5 bg-red-600 text-white font-medium
-        text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700
-        hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none
-        focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150
-        ease-in-out' %>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="fs-4 p-3 border border-1 container mt-5 p-2">
+  <%= form_with model: @recipe, method: :post, local: true do |f| %>
+    <%= f.label :name, "Name", class: "form-label fs-6" %>
+    <%= f.text_field :name, required: true, class: "form-control mb-4" %>
+    <%= f.label :description, "Write description", class: "form-label fs-5" %>
+    <%= f.text_area :description, required: true, class: "form-control" %>
+    <%= f.label :cookingTime, "Cooking Time", class: "form-label fs-5" %>
+    <%= f.text_field :cookingTime, class: "form-control mb-2" %>
+    <%= f.label :preparationTime, "Preparation Time", class: "form-label fs-5" %>
+    <%= f.text_field :preparationTime, class: "form-control mb-2" %>
+    <%= f.label :public, "Public", class: "form-label fs-6" %>
+    <%= f.check_box :public %>
+    <br>
+    <%= f.submit "Add Recipe", class: "btn btn-primary my-5" %>
+  <% end %>
+</div> 

@@ -1,58 +1,42 @@
-<div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
-  <%= form_with(model: recipe) do |form| %>
+<%= form_with(model: recipe) do |form| %>
+  <% if recipe.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
 
-  <div class="form-group mb-6">
-    <%= form.label :name %><br />
-    <%= form.text_field :name, autofocus: true, autocomplete: "email",
-    class:'form-control block w-full px-3 py-1.5 text-base font-normal
-    text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300
-    rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white
-    focus:border-blue-600 focus:outline-none' %>
-  </div>
+      <ul>
+        <% recipe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <div class="form-group mb-6">
-    <%= form.label :preperation_time, style: "display: block" %> <%=
-    form.number_field :preperation_time, class:'form-control block w-full px-3
-    py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border
-    border-solid border-gray-300 rounded transition ease-in-out m-0
-    focus:text-gray-700 focus:bg-white focus:border-blue-600
-    focus:outline-none'%>
-  </div>
-
-  <div class="form-group mb-6">
-    <%= form.label :cooking_time, style: "display: block" %> <%=
-    form.number_field :cooking_time, class:'form-control block w-full px-3
-    py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border
-    border-solid border-gray-300 rounded transition ease-in-out m-0
-    focus:text-gray-700 focus:bg-white focus:border-blue-600
-    focus:outline-none'%>
-  </div>
-
-  <div class="form-group mb-6">
-    <%= form.label :description, style: "display: block" %> <br />
-    <%=form.text_area :description, class:'form-control block w-full px-3 py-1.5
-    text-base font-normal text-gray-700 bg-white bg-clip-padding border
-    border-solid border-gray-300 rounded transition ease-in-out m-0
-    focus:text-gray-700 focus:bg-white focus:border-blue-600
-    focus:outline-none'%>
-  </div>
-
-  <div class="form-group mb-6 flex gap-2">
-    <%= form.label "Public recipe", class:"form-check-label inline-block
-    text-gray-800" %> <br />
-    <%= form.check_box :public, class:"form-check-input appearance-none h-4 w-4
-    border border-gray-300 rounded-sm bg-white checked:bg-blue-600
-    checked:border-blue-600 focus:outline-none transition duration-200 mt-1
-    align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-    %>
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
   </div>
 
   <div>
-    <%= form.submit class:' w-full px-6 py-2.5 bg-blue-600 text-white
-    font-medium text-xs leading-tight uppercase rounded shadow-md
-    hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg
-    focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg
-    transition duration-150 ease-in-out'%>
+    <%= form.label :preparationTime, style: "display: block" %>
+    <%= form.text_field :preparationTime %>
   </div>
-  <% end %>
-</div>
+
+  <div>
+    <%= form.label :cookingTime, style: "display: block" %>
+    <%= form.text_field :cookingTime %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :public, style: "display: block" %>
+    <%= form.check_box :public %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
