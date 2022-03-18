@@ -2,6 +2,10 @@
 
 one:
   name: MyString
+  measurementUnit: MyString
+  Price: 9.99
 
 two:
   name: MyString
+  measurementUnit: MyString
+  Price: 9.99
