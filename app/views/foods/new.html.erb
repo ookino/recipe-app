@@ -1,9 +1,21 @@
-<h1>New food</h1>
-
-<%= render "form", food: @food %>
-
-<br>
+<h1>Add Food</h1>
+<%= form_with model: @food do |form| %>
+<div>
+  <%= form.label :name %><br>
+  <%= form.text_field :name %>
+</div>
 
 <div>
-  <%= link_to "Back to foods", foods_path %>
+  <%= form.label :measurement_unit %><br>
+  <%= form.text_field :measurementUnit %>
 </div>
+
+<div>
+  <%= form.label :Price %><br>
+  <%= form.number_field :Price %>
+</div>
+
+<div>
+  <%= form.submit %>
+</div>
+<% end %>
