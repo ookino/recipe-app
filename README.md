@@ -35,11 +35,12 @@ To get a local copy up and running follow these simple example steps.
 
 ## Authors
 
-👤 **Author1**
+👤 Busiwa Liuma
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+-GitHub: (https://github.com/Busiwa24) 
+-Twitter: (https://twitter.com/busiwaliuma) 
+-LinkedIn: (https://www.linkedin.com/in/busiwa-liuma-)
+
 
 👤 **Author2**
 
