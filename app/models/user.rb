@@ -6,11 +6,11 @@ class User < ApplicationRecord
          :registerable,
          :recoverable,
          :rememberable,
-         :validatable,
-         :confirmable
+         :validatable
 
   has_many :foods, dependent: :destroy
   has_many :recipes, dependent: :destroy
+
   validates :name, presence: true, length: { minimum: 3 }
 
   def set_role
