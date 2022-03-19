@@ -1,0 +1,26 @@
+<%= link_to new_food_url, :class => "btn btn-dark bg-dark add mb-3" do %> Add
+Food <% end %>
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Food</th>
+      <th scope="col">Measurement Unit</th>
+      <th scope="col">Unit Price</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @foods.each do | food| %>
+    <tr>
+      <th scope="row"><%= food.name%></th>
+      <td><%= food.measurement_unit %></td>
+      <td>$ <%= food.price %></td>
+      <td>
+        <% if can? :destroy, food %> <%= button_to "Delete Food",
+        "foods/#{food.id}", method: :delete, data: {confirm: "Are you sure"},
+        :class => "btn btn-sm btn-danger"%> <% else %> cannot delete <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

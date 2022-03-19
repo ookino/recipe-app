@@ -1,0 +1,29 @@
+<% if user_signed_in? %>
+<h4>Shopping List</h1>
+
+<div class="d-flex justify-content-between mt-5">
+  <h6>Amount of food items to buy: <%= @recipe_foods.length %> </h6>
+  <h6 class="fw-bold">Total price: <%= @total_price %> </h6>
+</div> 
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">Food</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @recipe_foods.each do |r| %>
+        <% if @food.include?(r.food) %>
+          <tr>
+            <th scope="row"><%= r.food.name %></th>
+            <td><%= r.quantity %></td>
+            <td><%= r.food.price * r.quantity %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+    </table>
+  <% end %>

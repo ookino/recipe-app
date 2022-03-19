@@ -1,0 +1,33 @@
+<h4>Add Recipe</h4>
+
+<%= form_with model: @recipe do |form| %>
+<div class="mb-3">
+  <%= form.label :name, class:'form-label' %><br />
+  <%= form.text_field :name, class:'form-control' %>
+</div>
+
+<div class="mb-3">
+    <%= form.label :preparation_time, class: "form-label" %>
+    <%= form.number_field :preperation_time, class:'form-control' %>
+  </div>
+
+<div class="mb-3">
+    <%= form.label :cooking_time, class: "form-label" %>
+    <%= form.number_field :cooking_time, class:'form-control' %>
+  </div>
+
+<div class="mb-3">
+    <%= form.label :description, "Write description", class: "form-label" %><br />
+    <%= form.text_area :description, required: true, class:'form-control'%>
+</div>
+
+<div class="mb-3">
+    <%= form.check_box :public %>
+    <%= form.label :public, class: "form-label"%>
+</div>
+
+ <div class="actions mb-5">
+    <%= form.submit "Add", class:'btn btn-dark' %>
+</div>
+
+<% end %>

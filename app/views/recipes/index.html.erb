@@ -1,0 +1,25 @@
+<div>
+  <%= link_to new_recipe_path, :class => "btn btn-dark bg-dark add mb-3" do %>
+  Add Recipe <% end %>
+  <ul class="list-group list-unstyled">
+    <% @recipes.each do |r| %>
+    <li class="border border-1 border-dark p-4 mt-3 rounded">
+      <div class="d-flex gap-4 align-items start">
+        <div>
+          <%= link_to recipe_path(r.id), id: "recipe_path#{r.id}" do %>
+          <h5><%= r.name%></h5>
+          <% end %>
+          <div>
+            <% if can? :destroy, r %> <%= button_to "Delete", recipe_path(r.id),
+            method: :delete, class: "btn btn-danger"%> <% else %> cannot delete
+            <% end %>
+          </div>
+        </div>
+        <div>
+          <p class="ml-5"><%= r.description%></p>
+        </div>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
