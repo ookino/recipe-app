@@ -3,8 +3,8 @@
 <div class="mb-3">
   <%= form.label :food %>
   <div>
-    <%= form.select :food_id, current_user.foods.collect {|food| [food.name,
-    food.id]},{ include_blank: true} , class:"form-select" %>
+    <%= form.select :food_id, Food.all.collect {|food| [food.name, food.id]},{
+    include_blank: true} , class:"form-select" %>
   </div>
 </div>
 <div class="mb-3">

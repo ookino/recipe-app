@@ -16,8 +16,9 @@ Food <% end %>
       <td><%= food.measurement_unit %></td>
       <td>$ <%= food.price %></td>
       <td>
-        <%= button_to "Delete Food", "foods/#{food.id}", method: :delete, data:
-        {confirm: "Are you sure"}, :class => "btn btn-sm btn-danger"%>
+        <% if can? :destroy, food %> <%= button_to "Delete Food",
+        "foods/#{food.id}", method: :delete, data: {confirm: "Are you sure"},
+        :class => "btn btn-sm btn-danger"%> <% else %> cannot delete <% end %>
       </td>
     </tr>
     <% end %>

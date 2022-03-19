@@ -12139,3 +12139,51 @@ Processing by RecipesController#public as HTML
 Completed 200 OK in 46ms (Views: 19.3ms | ActiveRecord: 2.4ms | Allocations: 7571)
 
 
+Started GET "/" for ::1 at 2022-03-19 17:26:37 +0100
+  [1m[36mActiveRecord::SchemaMigration Pluck (10.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FoodsController#index as HTML
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering foods/index.html.erb within layouts/application
+  [1m[36mFood Load (8.2ms)[0m  [1m[34mSELECT "foods".* FROM "foods"[0m
+  ↳ app/views/foods/index.html.erb:13
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/ability.rb:20:in `block in initialize'
+  Rendered foods/index.html.erb within layouts/application (Duration: 74.7ms | Allocations: 14353)
+  Rendered shared/_navbar.html.erb (Duration: 9.1ms | Allocations: 533)
+  Rendered layout layouts/application.html.erb (Duration: 184.7ms | Allocations: 50116)
+Completed 200 OK in 257ms (Views: 176.1ms | ActiveRecord: 28.5ms | Allocations: 73973)
+
+
+Started GET "/recipes" for ::1 at 2022-03-19 17:26:43 +0100
+Processing by RecipesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (3.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:5
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/ability.rb:15:in `block in initialize'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/ability.rb:15:in `block in initialize'
+  Rendered recipes/index.html.erb within layouts/application (Duration: 20.7ms | Allocations: 9023)
+  Rendered shared/_navbar.html.erb (Duration: 0.2ms | Allocations: 150)
+  Rendered layout layouts/application.html.erb (Duration: 26.1ms | Allocations: 11547)
+Completed 200 OK in 33ms (Views: 20.9ms | ActiveRecord: 7.6ms | Allocations: 14267)
+
+
+Started GET "/foods" for ::1 at 2022-03-19 17:26:44 +0100
+Processing by FoodsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering foods/index.html.erb within layouts/application
+  [1m[36mFood Load (0.6ms)[0m  [1m[34mSELECT "foods".* FROM "foods"[0m
+  ↳ app/views/foods/index.html.erb:13
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/ability.rb:20:in `block in initialize'
+  Rendered foods/index.html.erb within layouts/application (Duration: 5.2ms | Allocations: 1602)
+  Rendered shared/_navbar.html.erb (Duration: 0.2ms | Allocations: 126)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | Allocations: 3901)
+Completed 200 OK in 19ms (Views: 9.4ms | ActiveRecord: 1.2ms | Allocations: 5549)
+
+
