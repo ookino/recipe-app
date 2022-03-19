@@ -1,41 +1,39 @@
-class RecipesController < ApplicationController
-  load_and_authorize_resource
-  before_action :set_recipe, only: %i[show edit update destroy]
-
-  def index
-    @recipes = current_user.recipes
-  end
-
-  def show; end
-
+class RecipesFoodsController < ApplicationController
   def new
-    @recipe = Recipe.new
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe_food = @recipe.recipe_foods.new
   end
-
-  # GET /recipes/1/edit
-  def edit; end
 
   def create
-    @recipe = current_user.recipes.new(recipe_params)
-
-    respond_to do |format|
-      if @recipe.save
-        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe was successfully created.' }
-        format.json { render :show, status: :created, location: @recipe }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
-      end
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe_food = @recipe.recipe_foods.create(recipe_foods_params)
+    if @recipe_food.save
+      flash[:notice] = 'Food created.'
+      redirect_to @recipe
+    else
+      render :new
     end
+  end
+
+  def edit
+    @recipe_food = RecipeFood.find(params[:id])
+  end
+
+  def update
+    @recipe_food = RecipeFood.find(params[:id])
+    if @recipe_food.update(update_params)
+      flash[:success] = 'Recipe Food updated successfully.'
+    else
+      flash[:error] = 'Could not add'
+    end
+    redirect_to recipe_path(@recipe_food.recipe_id)
   end
 
   def destroy
-    @recipe.destroy
-
-    respond_to do |format|
-      format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @recipe_food = RecipeFood.find(params[:id])
+    @recipe_food.destroy
+    flash[:success] = 'Recipe Food deleted successfully.'
+    redirect_to recipe_path(@recipe_food.recipe_id)
   end
 
   private
