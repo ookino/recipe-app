@@ -14,16 +14,23 @@
         </li>
 
         <li class="nav-item">
+          <%= link_to 'Public Recipes', public_path, class:"nav-link" %>
+        </li>
+
+        <li class="nav-item align-self-center">
           <%= link_to 'Sign out', destroy_user_session_path, method: :delete,
-          class:"nav-link" %>
+          class:"btn btn-dark" %>
         </li>
-        <% else %>
+        <% else %> &nbsp;
+        <li class="nav-item mr-5">
+          <%= link_to 'Sign in', new_user_session_path, class:"btn btn-dark" %>
+        </li>
+        &nbsp;&nbsp;&nbsp;
         <li class="nav-item">
-          <%= link_to 'Sign up', new_user_registration_path, class:"nav-link" %>
+          <%= link_to 'Sign up', new_user_registration_path, class:"btn
+          btn-outline-dark" %>
         </li>
-        <li class="nav-item">
-          <%= link_to 'Sign in', new_user_session_path, class:"nav-link" %>
-        </li>
+
         <% end %>
       </ul>
     </div>
